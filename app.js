@@ -35,13 +35,14 @@ app.route("/articles")
 app.route("/articles/:title")
 .get((req, res) => {
   const { title } = req.params;
+
   Article.find({ title })
     .then((result) => res.send(result))
     .catch((err) => res.send(err));
 })
 .put((req, res) => {
   const { title, content } = req.query;
-  console.log(title, content);
+
   Article.updateOne({ title: req.params.title }, { title, content })
     .then((result) => res.send(result))
     .catch((err) => res.send(err))
